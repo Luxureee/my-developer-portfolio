@@ -60,8 +60,9 @@
 
         .about { display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }
         .about img {
-            width: 200px; height: 200px; object-fit: cover; border-radius: 50%;
-            border: 3px solid var(--gold); box-shadow: 0 0 0 6px var(--crimson);
+            width: 220px; aspect-ratio: 4 / 5; height: auto; object-fit: cover; border-radius: 14px;
+            border: 3px solid var(--gold); box-shadow: 0 0 0 6px var(--crimson), 0 12px 30px rgba(0,0,0,.6);
+            transform: rotate(-3deg);
         }
         .about div { flex: 1; min-width: 260px; }
 
