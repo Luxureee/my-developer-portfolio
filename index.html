@@ -103,10 +103,64 @@
         hr { border: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 3rem 0 0; }
         footer { text-align: center; padding: 2rem 1rem 3rem; color: var(--muted); }
         footer .closing { font-style: italic; color: var(--cream); font-size: 1.3rem; }
+
+        /* ---- animated gambling touches ---- */
+        header { position: relative; overflow: hidden; }
+        .fan { display: flex; justify-content: center; margin: 1.5rem 0 .5rem; height: 150px; perspective: 800px; }
+        .card {
+            width: 92px; height: 132px; margin: 0 -14px; border-radius: 10px;
+            background: var(--cream); border: 2px solid var(--gold);
+            display: grid; place-items: center; font-family: "Cinzel", serif; font-size: 2.6rem; color: var(--crimson);
+            box-shadow: 0 10px 25px rgba(0,0,0,.6); position: relative;
+            transform-origin: bottom center; animation: deal .9s cubic-bezier(.2,.8,.2,1) both;
+        }
+        .card small { position: absolute; top: 6px; left: 8px; font-size: 1rem; }
+        .card.black { color: var(--ink); }
+        .card:nth-child(1) { --r: -24deg; animation-delay: .1s; }
+        .card:nth-child(2) { --r: -12deg; animation-delay: .25s; }
+        .card:nth-child(3) { --r: 0deg;   animation-delay: .4s; }
+        .card:nth-child(4) { --r: 12deg;  animation-delay: .55s; }
+        .card:nth-child(5) { --r: 24deg;  animation-delay: .7s; }
+        .card { transform: rotate(var(--r)); }
+        .card:hover { transform: rotate(var(--r)) translateY(-18px); transition: transform .25s; }
+        @keyframes deal { from { transform: translateY(-400px) rotate(180deg); opacity: 0; } to { transform: rotate(var(--r)); opacity: 1; } }
+
+        .float { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+        .float span { position: absolute; bottom: -60px; color: rgba(212,28,43,.18); font-size: 2rem; animation: rise linear infinite; }
+        .float span:nth-child(even) { color: rgba(201,162,74,.15); }
+        @keyframes rise { to { transform: translateY(-115vh) rotate(360deg); } }
+        header, nav, main, footer, hr { position: relative; z-index: 1; }
+        nav { position: sticky; z-index: 5; }
+
+        .dice { display: inline-block; font-size: 2.2rem; color: var(--cream); animation: roll 3s ease-in-out infinite; margin: 0 .4rem; }
+        .dice:nth-child(2) { animation-delay: .4s; }
+        @keyframes roll { 0%,70%,100% { transform: rotate(0); } 80% { transform: rotate(200deg) scale(1.2); } 90% { transform: rotate(360deg); } }
+
+        .stake {
+            text-align: center; margin: 3rem auto 0; padding: 1.4rem; max-width: 640px;
+            border: 1px solid var(--gold); background: linear-gradient(135deg, rgba(163,16,29,.35), rgba(11,6,6,.6));
+            font-style: italic; font-size: 1.35rem; animation: glow 3s ease-in-out infinite;
+        }
+        @keyframes glow { 50% { box-shadow: 0 0 28px rgba(212,28,43,.45); } }
+
+        h2::before { display: inline-block; animation: pulse 2.4s ease-in-out infinite; }
+        @keyframes pulse { 50% { transform: scale(1.3); text-shadow: 0 0 10px var(--blood); } }
+        article { transition: transform .25s, box-shadow .25s; }
+        article:hover { transform: translateX(8px); box-shadow: -6px 0 18px rgba(212,28,43,.35); }
+        @media (prefers-reduced-motion: reduce) { *, *::before { animation: none !important; } }
+        @media (max-width: 520px) { .card { width: 64px; height: 92px; font-size: 1.8rem; margin: 0 -10px; } .fan { height: 110px; } }
     </style>
 </head>
 <body>
+    <div class="float" aria-hidden="true"><span style="left:5%;animation-duration:22s;animation-delay:-3s">♠</span><span style="left:18%;animation-duration:28s;animation-delay:-10s">♦</span><span style="left:32%;animation-duration:25s;animation-delay:-6s">♣</span><span style="left:48%;animation-duration:30s;animation-delay:-15s">♥</span><span style="left:63%;animation-duration:24s;animation-delay:-2s">♠</span><span style="left:77%;animation-duration:27s;animation-delay:-12s">♦</span><span style="left:90%;animation-duration:23s;animation-delay:-8s">♥</span><span style="left:40%;animation-duration:32s;animation-delay:-20s">♣</span></div>
     <header id="home">
+        <div class="fan" aria-hidden="true">
+            <div class="card"><small>A</small>♥</div>
+            <div class="card black"><small>K</small>♠</div>
+            <div class="card"><small>Q</small>♦</div>
+            <div class="card black"><small>J</small>♣</div>
+            <div class="card"><small>10</small>♥</div>
+        </div>
         <p class="suits">♠ ♥ ♣ ♦</p>
         <h1>Lunari<span>aeee</span></h1>
         <p class="title">My Developer Portfolio</p>
@@ -200,6 +254,10 @@
             </form>
             <p class="note">Note: This form is a visual prototype only.</p>
         </section>
+        <div class="stake">
+            <span class="dice" aria-hidden="true">⚄</span><span class="dice" aria-hidden="true">⚅</span><br>
+            Every project is a bet on myself, and I always go all in.
+        </div>
     </main>
 
     <hr>
