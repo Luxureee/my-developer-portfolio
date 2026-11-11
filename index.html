@@ -132,7 +132,8 @@
         header, nav, main, footer, hr { position: relative; z-index: 1; }
         nav { position: sticky; z-index: 5; }
 
-        .dice { display: inline-block; font-size: 2.2rem; color: var(--cream); animation: roll 3s ease-in-out infinite; margin: 0 .4rem; }
+        .dice-row { display: flex; justify-content: center; gap: 1rem; margin-bottom: .8rem; }
+        .dice { display: block; overflow: visible; filter: drop-shadow(0 4px 6px rgba(0,0,0,.5)); animation: roll 3s ease-in-out infinite; }
         .dice:nth-child(2) { animation-delay: .4s; }
         @keyframes roll { 0%,70%,100% { transform: rotate(0); } 80% { transform: rotate(200deg) scale(1.2); } 90% { transform: rotate(360deg); } }
 
@@ -259,7 +260,7 @@
             <p class="note">Note: This form is a visual prototype only.</p>
         </section>
         <div class="stake">
-            <span class="dice" aria-hidden="true">⚄</span><span class="dice" aria-hidden="true">⚅</span><br>
+            <div class="dice-row"><svg class="dice" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><rect x="3" y="3" width="42" height="42" rx="9" fill="#f1e6d2" stroke="#c9a24a" stroke-width="2.5"/><g fill="#a3101d"><circle cx="14" cy="14" r="4.2"/><circle cx="34" cy="14" r="4.2"/><circle cx="24" cy="24" r="4.2"/><circle cx="14" cy="34" r="4.2"/><circle cx="34" cy="34" r="4.2"/></g></svg><svg class="dice" viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><rect x="3" y="3" width="42" height="42" rx="9" fill="#f1e6d2" stroke="#c9a24a" stroke-width="2.5"/><g fill="#a3101d"><circle cx="14" cy="13" r="4.2"/><circle cx="34" cy="13" r="4.2"/><circle cx="14" cy="24" r="4.2"/><circle cx="34" cy="24" r="4.2"/><circle cx="14" cy="35" r="4.2"/><circle cx="34" cy="35" r="4.2"/></g></svg></div>
             Every project is a bet on myself, and I always go all in.
         </div>
     </main>
